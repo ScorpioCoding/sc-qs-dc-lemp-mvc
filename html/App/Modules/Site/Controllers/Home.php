@@ -23,10 +23,13 @@ class Home extends Controller
     $trans = array();
     $data = array();
 
-    $viewTemplatePath = PATH_MODULES;
-    $viewTemplatePath .= 'Site/Views';
+    $viewPath = PATH_MODULES;
+    $viewPath .= 'Site/Views';
 
-    $viewName = $viewTemplatePath . DS;
+    $viewTemplatePath = PATH_MODULES;
+    $viewTemplatePath .= 'Site/Views/temp';
+
+    $viewName = $viewPath . DS;
     $viewName .= strtolower($args['controller']);
 
     //TODO GET META DATA FROM DATABASE
