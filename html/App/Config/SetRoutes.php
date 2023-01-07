@@ -2,23 +2,19 @@
 
 namespace App\Config;
 
-class Config
+class SetRoutes
 {
   private $modules = array();
   private $routes = array();
 
   public function __construct()
   {
-    self::setDatabase();
-    self::setModules();
+    self::loadModules();
+    self::loadRoutes();
   }
 
-  private function setDatabase()
-  {
-    include_once('database.php');
-  }
 
-  private function setModules()
+  private function loadModules()
   {
     $mods = include_once('modules.php');
 
@@ -32,7 +28,7 @@ class Config
   /** Routes
    * 
    */
-  public function setRoutes()
+  public function loadRoutes()
   {
     //foreach module get the routes
 
