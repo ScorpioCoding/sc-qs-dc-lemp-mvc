@@ -60,6 +60,18 @@ abstract class Controller
   {
   }
 
+  /**
+   * Redirect to a Different Page
+   * @param string : $url -> The Relative path
+   * @return void
+   */
+  public function redirect($url)
+  {
+    header('Location:' . $url, true, 303);
+    //header('Location: http://bing.com', true, 301);
+    exit;
+  }
+
 
 
 
