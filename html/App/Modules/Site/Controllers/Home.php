@@ -5,7 +5,6 @@ namespace App\Modules\Site\Controllers;
 use App\Core\Controller;
 use App\Core\View;
 
-use App\Modules\Site\Utils\Translation;
 
 /**
  *  Home
@@ -32,11 +31,6 @@ class Home extends Controller
     $viewName = $viewPath . DS;
     $viewName .= strtolower($args['controller']);
 
-    //TODO GET META DATA FROM DATABASE
-    //$meta = MetaSite::getMeta($args);
-
-    //TODO GET TRANSLATION FROM DATABASE
-    //$trans = Translation::getTranslation($args['lang']);
 
     /*
     * render the view
