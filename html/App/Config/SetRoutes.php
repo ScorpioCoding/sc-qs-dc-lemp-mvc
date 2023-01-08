@@ -31,10 +31,12 @@ class SetRoutes
   public function loadRoutes()
   {
     //foreach module get the routes
-
     foreach ($this->modules as $mod) {
-      //echo $mod['routes'] . '<br>';
-      $this->routes = include_once(PATH_MODULES . $mod['routes']);
+      $data = include_once(PATH_MODULES . $mod['routes']);
+      foreach ($data as $key => $value) {
+        $this->routes[$key] = $value;
+        //print_r($this->routes[$key]);
+      };
     };
   }
   public function getRoutes()
