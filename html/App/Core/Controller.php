@@ -32,14 +32,18 @@ abstract class Controller
   public function __call($name, $args)
   {
     $method = $name . 'Action';
+    try {
 
-    if (method_exists($this, $method)) {
-      if ($this->before() !== false) {
-        call_user_func_array([$this, $method], $args);
-        $this->after();
+      if (method_exists($this, $method)) {
+        if ($this->before() !== false) {
+          call_user_func_array([$this, $method], $args);
+          $this->after();
+        }
+      } else {
+        throw new NewException("Controller.php : Method $method not found in controller : " . get_class($this));
       }
-    } else {
-      throw new \Exception("Controller.php : Method $method not found in controller : " . get_class($this));
+    } catch (NewException $e) {
+      echo $e->getErrorMsg();
     }
   }
 

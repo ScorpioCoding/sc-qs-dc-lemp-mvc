@@ -36,7 +36,11 @@ class App
     $tokens = htmlspecialchars($_SERVER['REQUEST_URI'], ENT_QUOTES);
 
     //DISPATCH
-    $router->dispatch($tokens);
+    try {
+      $router->dispatch($tokens);
+    } catch (NewException $e) {
+      echo $e->getErrorMsg();
+    }
   }
 
   //END-Class

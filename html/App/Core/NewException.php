@@ -20,7 +20,7 @@ class NewException extends Exception
     $msg .= 'Error on line : ' . $this->getLine();
     $msg .= '<br/>';
     $msg .= $this->getMessage();
-    $msg .= '<br/>';
+    $msg .= '<br/><br/>';
 
     return $msg;
   }

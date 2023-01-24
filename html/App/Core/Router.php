@@ -89,14 +89,14 @@ class Router
           //unset($this->params['action']);
           $controller_object->$action($this->params);
         } else {
-          throw new \Exception("ROUTER :: The Method '$action' (in controller '$controller') was not found");
+          throw new NewException("ROUTER :: The Method '$action' (in controller '$controller') was not found");
         }
       } else {
-        throw new \Exception("ROUTER :: The Controller '$controller' was not found");
+        throw new NewException("ROUTER :: The Controller for route '$uri' was not found, Check Config/routes");
       }
     } else {
       //TODO REDIRECT HEADER TO CUSTOM 404
-      //throw new \Exception('ROUTER :: No route matched.', 404);
+      //throw new NewException('ROUTER :: No route matched.', 404);
       header('HTTP/1.1 404 Not Found');
       header("Refresh:0; url=404.php");
     }
@@ -191,20 +191,21 @@ class Router
    */
   protected function setFullNamespace()
   {
-    //$namespace = 'App\Controllers\\';
-    $namespace = '';
-    if (array_key_exists('namespace', $this->params)) {
-      $name = array();
-      $name = explode('/', $this->params['namespace']);
-
-      // var_dump($name);
-
-      foreach ($name as $key => $value) {
-        $namespace .= $this->convertToStudlyCaps($value) . '\\';
+    try {
+      if (array_key_exists('namespace', $this->params)) {
+        $namespace = '';
+        $name = array();
+        $name = explode('/', $this->params['namespace']);
+        foreach ($name as $key => $value) {
+          $namespace .= $this->convertToStudlyCaps($value) . '\\';
+        }
+        return $namespace;
+      } else {
+        throw new NewException("Router.php : setFullNamespace : namespace not in the routing table/params check Config/routes file");
       }
-      //$namespace .= 'Controllers\\';
+    } catch (NewException $e) {
+      echo $e->getErrorMsg();
     }
-    return $namespace;
   }
 
 
