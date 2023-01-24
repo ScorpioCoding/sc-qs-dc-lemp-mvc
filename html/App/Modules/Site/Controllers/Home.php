@@ -5,6 +5,8 @@ namespace App\Modules\Site\Controllers;
 use App\Core\Controller;
 use App\Core\View;
 
+use App\Modules\Site\Utils\Meta;
+
 
 /**
  *  Home
@@ -17,26 +19,25 @@ class Home extends Controller
 
   public function indexAction($args = array())
   {
-    //echo "here - home controller";
+    //MetaData
     $meta = array();
+
+    // Translation
     $trans = array();
+
+    // Extra data
     $data = array();
 
-    $viewPath = PATH_MODULES;
-    $viewPath .= 'Site/Views';
-
-    $viewName = $viewPath . DS;
-    $viewName .= strtolower($args['controller']);
 
 
     /*
     * render the view
-    * @params string 	$viewname
+    * @params array 	$args
     * @params array 	$meta
     * @params array 	$trans
     * @params array 	$data
     */
-    View::render($viewName, $meta, $trans, $data);
+    View::render($args, $meta, $trans, $data);
   }
 
   protected function after()
