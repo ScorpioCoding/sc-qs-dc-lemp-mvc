@@ -5,8 +5,6 @@ namespace App\Modules\Site\Controllers;
 use App\Core\Controller;
 use App\Core\View;
 
-use App\Modules\Site\Utils\Meta;
-
 
 /**
  *  Home
