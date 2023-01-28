@@ -15,9 +15,8 @@ class View
 
   public static function setFile($args = array())
   {
-    $viewFile = PATH_MODULES;
-    $viewFile .= ucfirst($args['module']) . DS;
-    $viewFile .= 'Views' . DS;
+    $viewFile = PATH_VIEWS;
+    $viewFile .= strtolower($args['module']) . DS;
     $viewFile .= strtolower($args['controller']);
     $viewFile .= '.phtml';
 

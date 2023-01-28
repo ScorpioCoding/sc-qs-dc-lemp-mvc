@@ -1,6 +1,6 @@
 <?php
 return array(
-  'site'  => ['routes' => 'Site/Config/routes.php'],
+  'site'  => ['routes' => 'site.routes.php'],
 
   //'backend' => ['routes' => 'Backend/Config/routes.php'],
 );

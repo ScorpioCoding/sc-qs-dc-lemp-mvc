@@ -32,7 +32,7 @@ class SetRoutes
   {
     //foreach module get the routes
     foreach ($this->modules as $mod) {
-      $data = include_once(PATH_MODULES . $mod['routes']);
+      $data = include_once(PATH_ROUTES . $mod['routes']);
       foreach ($data as $key => $value) {
         $this->routes[$key] = $value;
         //print_r($this->routes[$key]);
