@@ -13,21 +13,37 @@ class View
     echo ('test within the class not static');
   }
 
-  public static function setFile($args = array())
+  public static function setPage($args = array())
   {
-    $viewFile = PATH_VIEWS;
-    $viewFile .= strtolower($args['module']) . DS;
-    $viewFile .= strtolower($args['controller']);
-    $viewFile .= '.phtml';
+    $page = PATH_VIEWS;
+    $page .= strtolower($args['module']) . DS;
+    $page .= strtolower($args['controller']);
+    $page .= '.phtml';
 
     try {
-      self::checkFile($viewFile);
-      return $viewFile;
+      self::checkFile($page);
+      return $page;
     } catch (NewException $e) {
       echo $e->getErrorMsg();
       return false;
     }
   }
+
+  public static function setTemplate($args = array())
+  {
+    $template = PATH_VIEWS;
+    $template .= ucfirst($args['template']);
+    $template .= '.phtml';
+
+    try {
+      self::checkFile($template);
+      return $template;
+    } catch (NewException $e) {
+      echo $e->getErrorMsg();
+      return false;
+    }
+  }
+
 
   /*
     * rendering the page - View.php
@@ -37,13 +53,15 @@ class View
   public static function render($args = array(), $meta = array(), $trans = array(), $data = array())
   {
     try {
-      $viewFile = self::setFile($args);
+      $page = self::setPage($args);
 
-      if ($viewFile) {
+      $template = self::setTemplate($args);
+
+      if ($page) {
         extract($meta);
         extract($trans);
         extract($data);
-        require $viewFile;
+        require $template;
       } else {
         throw new NewException("View.php : render : Rendering FAILED");
       }
@@ -55,8 +73,7 @@ class View
 
   /*
     * Path checking at View base level - View.php
-    * @params   int     $renderOption 0,1,2
-    * @params   array   $paths
+    * @params   array   $file
     */
   public static function checkFile($file)
   {

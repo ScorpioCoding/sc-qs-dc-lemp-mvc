@@ -28,13 +28,7 @@ class Home extends Controller
 
 
 
-    /*
-    * render the view
-    * @params array 	$args
-    * @params array 	$meta
-    * @params array 	$trans
-    * @params array 	$data
-    */
+   $args['template'] = 'Template';
     View::render($args, $meta, $trans, $data);
   }
 
